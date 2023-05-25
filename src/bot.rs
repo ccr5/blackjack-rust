@@ -1,4 +1,7 @@
 pub mod bot {
+
+    use crate::cards::cards::Card;
+
     pub struct Bot {
         name: String,
         hand: Vec<Card>,
