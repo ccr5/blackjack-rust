@@ -5,7 +5,7 @@ pub mod bot {
     pub struct Bot {
         name: String,
         hand: Vec<Card>,
-        balance: f32,
+        pub balance: f32,
         wins: i32,
         defeats: i32
     }
