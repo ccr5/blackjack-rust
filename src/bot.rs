@@ -1,22 +1,21 @@
 pub mod bot {
 
-    use crate::cards::cards::Card;
+    use crate::{
+        cards::cards::Card, 
+        players::players::{Player, PlayerType}
+    };
 
     pub struct Bot {
-        name: String,
-        hand: Vec<Card>,
-        pub balance: f32,
-        wins: i32,
-        defeats: i32
+        pub player: Player
     }
 
     impl Bot {
         pub fn new(name: String, hand: Vec<Card>, balance: f32, wins: i32, defeats: i32) -> Self {
-            Bot { name, hand, balance, wins, defeats }
+            Bot { player: Player::new(name, hand, balance, wins, defeats) }
         }
 
         pub fn welcome_message(&self) {
-            println!("Hi o/ \nMy name is {} and I'll play with you", self.name);
+            println!("Hi o/ \nMy name is {} and I'll play with you", self.player.get_name());
             println!("Good luck!");
             println!("Aaah, I have the same balance for a fair play :)");
         }

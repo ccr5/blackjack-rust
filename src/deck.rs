@@ -1,23 +1,28 @@
 pub mod deck {
     use crate::cards::cards::Card;
-    use rand::thread_rng;
     use rand::seq::SliceRandom;
 
-    pub struct Deck {}
+    pub struct Deck {
+        deck: Vec<Card>
+    }
 
     impl Deck {
         pub fn new() -> Self {
-            Deck {  }
+            Deck { deck: vec![] }
         }
 
-        pub fn create_deck(&self) -> Vec<Card> {
+        pub fn get_deck(&self) -> &Vec<Card> {
+            &self.deck
+        }
+
+        pub fn create_deck(&mut self) -> bool {
             let mut new_deck: Vec<Card> = Vec::new();
             let name: [&str; 13] = [
                 "Aces", "Two", "Three", "Four", "Five", "Six",
                 "Seven", "Eight", "Nine", "Ten", "Valet", 
                 "Queen", "King"
             ];
-            let value: [Vec<u8>; 13] = [
+            let value: [Vec<i8>; 13] = [
                 vec![1, 11], vec![2], vec![3], vec![4], vec![5], vec![6],
                 vec![7], vec![8], vec![9], vec![10], vec![10], vec![10],
                 vec![10],
@@ -31,7 +36,13 @@ pub mod deck {
                 new_deck.push(Card::new(name[i].to_string(), value[i].clone(), tickers[i].to_string()));
             }
 
-            new_deck
+            self.deck = new_deck;
+            true
+        }
+
+        pub fn shuffle_deck(&mut self) -> bool {
+            self.deck.shuffle(&mut rand::thread_rng());
+            true
         }
     }
 }
