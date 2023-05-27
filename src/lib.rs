@@ -210,7 +210,7 @@ impl BlackJack {
 
 #[cfg(test)]
 mod tests {
-    use crate::{BlackJack, human::human::Human, players::players::PlayerType};
+    use crate::{BlackJack, human::human::Human, players::players::PlayerType, bot::bot::Bot};
 
     #[test]
     fn test_check_balance() {
@@ -223,7 +223,44 @@ mod tests {
 
     #[test]
     fn test_check_result() {
-        assert_eq!("Oi", "Oi");
+        let bj = BlackJack::new();
+        let mut human = Human::new("Test".to_string(), vec![], 0.0, 0, 0);
+        let mut computer = Bot::new("Test".to_string(), vec![], 0.0, 0, 0);
+        let bets = crate::Bets { player_bet_amount: 10.0, computer_bet_amount: 15.0 };
+        bj.check_result(
+            &mut human.player, 
+            &mut computer.player, 
+            bets, 
+            &"no win".to_string(), 
+            10, 
+            10
+        );
+        assert_eq!(human.player.get_balance(), 10.0);
+        assert_eq!(computer.player.get_balance(), 15.0);
+        
+        let bets = crate::Bets { player_bet_amount: 10.0, computer_bet_amount: 15.0 };
+        bj.check_result(
+            &mut human.player, 
+            &mut computer.player, 
+            bets, 
+            &"h1".to_string(), 
+            10, 
+            10
+        );
+        assert_eq!(human.player.get_balance(), 35.0);
+        assert_eq!(computer.player.get_balance(), 15.0);
+
+        let bets = crate::Bets { player_bet_amount: 10.0, computer_bet_amount: 15.0 };
+        bj.check_result(
+            &mut human.player, 
+            &mut computer.player, 
+            bets, 
+            &"h2".to_string(), 
+            10, 
+            10
+        );
+        assert_eq!(human.player.get_balance(), 35.0);
+        assert_eq!(computer.player.get_balance(), 40.0);
     }
 
     #[test]
