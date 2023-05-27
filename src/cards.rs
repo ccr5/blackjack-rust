@@ -1,5 +1,6 @@
 pub mod cards {
 
+    #[derive(Debug)]
     pub struct Card {
         name: String,
         height: Vec<i8>,
@@ -35,6 +36,25 @@ pub mod cards {
                 println!("- - - -");
             }
         }
+    }
+
+}
+
+#[cfg(test)]
+mod tests {
+    use super::cards::Card;
+
+    
+    #[test]
+    fn test_get_height() {
+        let card = Card::new("As".to_string(), vec![1, 11], "A".to_string());
+        assert_eq!(card.get_height(), &[1, 11]);
+    }
+    
+    #[test]
+    fn test_get_ticker() {
+        let card = Card::new("As".to_string(), vec![1, 11], "A".to_string());
+        assert_eq!(card.get_ticker(), &"A".to_string());
     }
 
 }

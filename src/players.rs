@@ -95,3 +95,83 @@ pub mod players {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use std::vec;
+
+    use crate::{players::players::PlayerType, cards::cards::Card};
+
+    use super::players::Player;
+
+    #[test]
+    fn test_get_name() {
+        let player = Player::new("Test".to_string(), vec![], 0.0, 0, 0);
+        assert_eq!(player.get_name(), "Test");
+    }
+
+    #[test]
+    fn test_get_hand() {
+        let player = Player::new("Test".to_string(), vec![], 0.0, 0, 0);
+        assert_eq!(player.get_hand().len(), 0);
+    }
+
+    #[test]
+    fn test_add_card_to_hand() {
+        let mut player = Player::new("Test".to_string(), vec![], 0.0, 0, 0);
+        assert_eq!(player.get_hand().len(), 0);
+        let card = Card::new("As".to_string(), vec![1], "A".to_string());
+        player.add_card_to_hand(card);
+        assert_eq!(player.get_hand().len(), 1);
+    }
+
+    #[test]
+    fn test_get_balance() {
+        let player = Player::new("Test".to_string(), vec![], 0.0, 0, 0);
+        assert_eq!(player.get_balance(), 0.0);
+    }
+
+    #[test]
+    fn test_deposit() {
+        let mut player = Player::new("Test".to_string(), vec![], 0.0, 0, 0);
+        assert_eq!(player.get_balance(), 0.0);
+        player.deposit(100.0);
+        assert_eq!(player.get_balance(), 100.0);
+    }
+
+    #[test]
+    fn test_withdraw() {
+        let mut player = Player::new("Test".to_string(), vec![], 0.0, 0, 0);
+        player.deposit(100.0);
+        player.withdraw(10.0);
+        assert_eq!(player.get_balance(), 90.0);
+    }
+
+    #[test]
+    fn test_get_wins() {
+        let player = Player::new("Test".to_string(), vec![], 0.0, 0, 0);
+        assert_eq!(player.get_wins(), 0);
+    }
+
+    #[test]
+    fn test_add_win() {
+        let mut player = Player::new("Test".to_string(), vec![], 0.0, 0, 0);
+        assert_eq!(player.get_wins(), 0);
+        player.add_win();
+        assert_eq!(player.get_wins(), 1);
+    }
+
+    #[test]
+    fn test_get_defeats() {
+        let player = Player::new("Test".to_string(), vec![], 0.0, 0, 0);
+        assert_eq!(player.get_defeats(), 0);
+    }
+
+    #[test]
+    fn test_add_defeats() {
+        let mut player = Player::new("Test".to_string(), vec![], 0.0, 0, 0);
+        assert_eq!(player.get_defeats(), 0);
+        player.add_defeats();
+        assert_eq!(player.get_defeats(), 1);
+    }
+}

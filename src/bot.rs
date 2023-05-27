@@ -48,3 +48,29 @@ pub mod bot {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::{bot::bot::Bot, cards::cards::Card};
+
+    #[test]
+    fn test_play_game() {
+        let bot = Bot::new("Test".to_string(), vec![], 0.0, 0, 0);
+        assert_eq!(bot.play_game(), true);
+
+        let card_a = Card::new("As".to_string(), vec![1], "A".to_string());
+        let bot = Bot::new("Test".to_string(), vec![card_a], 0.0, 0, 0);
+        assert_eq!(bot.play_game(), true);
+
+        let card_a = Card::new("As".to_string(), vec![1], "A".to_string());
+        let card_ten = Card::new("Ten".to_string(), vec![10], "10".to_string());
+        let bot = Bot::new("Test".to_string(), vec![card_a, card_ten], 0.0, 0, 0);
+        assert_eq!(bot.play_game(), false);
+
+        let card_eight = Card::new("Eight".to_string(), vec![8], "8".to_string());
+        let card_ten = Card::new("Ten".to_string(), vec![10], "10".to_string());
+        let bot = Bot::new("Test".to_string(), vec![card_eight, card_ten], 0.0, 0, 0);
+        assert_eq!(bot.play_game(), true);
+    }
+
+}

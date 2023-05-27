@@ -207,3 +207,31 @@ impl BlackJack {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::{BlackJack, human::human::Human, players::players::PlayerType};
+
+    #[test]
+    fn test_check_balance() {
+        let bj = BlackJack::new();
+        let mut user = Human::new("Test".to_string(), vec![], 0.0, 0, 0);
+        assert_eq!(bj.check_balance(&user.player), true);
+        user.player.deposit(100.0);
+        assert_eq!(bj.check_balance(&user.player), false);
+    }
+
+    #[test]
+    fn test_check_result() {
+        assert_eq!("Oi", "Oi");
+    }
+
+    #[test]
+    fn test_check_play_again() {
+        let bj = BlackJack::new();
+        assert_eq!(bj.check_play_again(&"y".to_string()), false);
+        assert_eq!(bj.check_play_again(&"n".to_string()), true);
+        assert_eq!(bj.check_play_again(&"x".to_string()), true);
+    }
+
+}

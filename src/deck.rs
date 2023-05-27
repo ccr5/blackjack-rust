@@ -46,3 +46,65 @@ pub mod deck {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::deck::Deck;
+
+    #[test]
+    fn test_get_card() {
+        let mut deck = Deck::new();
+        deck.create_deck();
+        let card_1 = match  deck.get_card() {
+            Some(val) => val,
+            None => panic!()
+        };
+
+        assert_eq!(card_1.get_ticker(), &"K".to_string());
+
+        let card_2 = match  deck.get_card() {
+            Some(val) => val,
+            None => panic!()
+        };
+
+        assert_eq!(card_2.get_ticker(), &"K".to_string());
+
+        let card_3 = match  deck.get_card() {
+            Some(val) => val,
+            None => panic!()
+        };
+
+        assert_eq!(card_3.get_ticker(), &"K".to_string());
+
+        let card_4 = match  deck.get_card() {
+            Some(val) => val,
+            None => panic!()
+        };
+
+        assert_eq!(card_4.get_ticker(), &"K".to_string());
+
+        let card_5 = match  deck.get_card() {
+            Some(val) => val,
+            None => panic!()
+        };
+
+        assert_eq!(card_5.get_ticker(), &"Q".to_string());
+    }
+
+    #[test]
+    fn test_create_deck() {
+        let mut deck = Deck::new();
+        let check = match  deck.get_card() {
+            Some(_) => true,
+            None => false
+        };
+        assert_eq!(check, false);
+
+        deck.create_deck();
+        let card_1 = match  deck.get_card() {
+            Some(val) => val,
+            None => panic!()
+        };
+        assert_eq!(card_1.get_ticker(), &"K".to_string());
+    }
+}
