@@ -24,7 +24,20 @@ pub mod cards {
         }
 
         pub fn show_card(&self) {
-            println!("{}", self.name)
+
+            if self.name == "Ten" {
+                println!("- - - -");
+                println!("|     |");
+                println!("| {}  |", self.ticker);
+                println!("|     |");
+                println!("- - - -");
+            } else {
+                println!("- - - -");
+                println!("|     |");
+                println!("|  {}  |", self.ticker);
+                println!("|     |");
+                println!("- - - -");
+            }
         }
     }
 

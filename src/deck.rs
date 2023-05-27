@@ -15,6 +15,10 @@ pub mod deck {
             &self.deck
         }
 
+        pub fn get_card(&mut self) -> Option<Card> {
+            self.deck.pop()
+        }
+
         pub fn create_deck(&mut self) -> bool {
             let mut new_deck: Vec<Card> = Vec::new();
             let name: [&str; 13] = [

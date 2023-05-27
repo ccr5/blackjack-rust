@@ -22,6 +22,7 @@ pub mod players {
         fn add_win(&mut self) -> bool;
         fn get_defeats(&self) -> i32;
         fn add_defeats(&mut self) -> bool;
+        fn show_hand(&self);
     }
 
     impl PlayerType for Player {
@@ -73,6 +74,12 @@ pub mod players {
         fn add_defeats(&mut self) -> bool {
             self.defeats += 1;
             true
+        }
+
+        fn show_hand(&self) {
+            for card in &self.hand {
+                card.show_card();
+            }
         }
     }
 

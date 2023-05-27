@@ -1,7 +1,7 @@
 pub mod dealer {
     use crate::cards::cards::Card;
 
-    pub fn check_as(count_a: i8, sum: i8) -> i8 {
+    fn check_as(count_a: i8, sum: i8) -> i8 {
         let mut new_sum = sum;
 
         if count_a >= 1 && sum > 10 {
@@ -13,14 +13,14 @@ pub mod dealer {
         new_sum
     }
 
-    pub fn check_winner(hand1: Vec<Card>, hand2: Vec<Card>) -> Option<(String, i8, i8)> {
+    pub fn check_winner(hand1: &Vec<Card>, hand2: &Vec<Card>) -> Option<(String, i8, i8)> {
         let mut h1: i8 = 0;
         let mut h2: i8 = 0;
         let mut count_a_h1: i8 = 0;
         let mut count_a_h2: i8 = 0;
 
         for card in hand1 {
-            if card.get_ticker().to_string() == 'A'.to_string() {
+            if card.get_ticker().to_string() == "A" {
                 count_a_h1 += 1;
             } else {
                 h1 += card.get_height().get(0).unwrap()
@@ -28,10 +28,10 @@ pub mod dealer {
         }
 
         for card in hand2 {
-            if card.get_ticker().to_string() == 'A'.to_string() {
-                count_a_h1 += 1;
+            if card.get_ticker().to_string() == "A" {
+                count_a_h2 += 1;
             } else {
-                h1 += card.get_height().get(0).unwrap()
+                h2 += card.get_height().get(0).unwrap()
             }
         }
 
