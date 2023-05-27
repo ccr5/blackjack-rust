@@ -11,10 +11,6 @@ pub mod deck {
             Deck { deck: vec![] }
         }
 
-        pub fn get_deck(&self) -> &Vec<Card> {
-            &self.deck
-        }
-
         pub fn get_card(&mut self) -> Option<Card> {
             self.deck.pop()
         }

@@ -16,7 +16,7 @@ pub mod players {
         fn get_hand(&self) -> &Vec<Card>;
         fn add_card_to_hand(&mut self, card: Card) -> bool;
         fn get_balance(&self) -> f32;
-        fn set_balance(&mut self, new_balance: f32) -> bool;
+        fn deposit(&mut self, new_balance: f32) -> bool;
         fn withdraw(&mut self, value: f32) -> bool;
         fn get_wins(&self) -> i32;
         fn add_win(&mut self) -> bool;
@@ -48,8 +48,8 @@ pub mod players {
             self.balance
         }
 
-        fn set_balance(&mut self, new_balance: f32) -> bool {
-            self.balance = new_balance;
+        fn deposit(&mut self, new_balance: f32) -> bool {
+            self.balance += new_balance;
             true
         }
 

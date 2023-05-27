@@ -11,10 +11,6 @@ pub mod cards {
             Card { name, height, ticker }
         }
 
-        pub fn get_name(&self) -> &String {
-            &self.name
-        }
-
         pub fn get_height(&self) -> &Vec<i8> {
             &self.height
         }
