@@ -1,5 +1,7 @@
 pub mod deck {
     use crate::cards::cards::Card;
+    use rand::thread_rng;
+    use rand::seq::SliceRandom;
 
     pub struct Deck {}
 

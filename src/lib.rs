@@ -1,15 +1,56 @@
-mod players;
 mod cards;
+mod deck;
+mod players;
 mod bot;
 
 use std::io;
 use players::players::Player;
 use bot::bot::Bot;
 
-struct BlackJack { }
+use crate::deck::deck::Deck;
+use rand::seq::SliceRandom;
+
+pub struct BlackJack { }
 
 impl BlackJack {
-    pub fn check_balance(player: Player) -> bool {
+    pub fn new() -> Self {
+        BlackJack {  }
+    }
+
+    pub fn run(&self) {
+        let mut name: String = String::new();
+        println!("Welcome to BlackJack -_-");
+
+        println!("First, What is your name? ");
+        io::stdin().read_line(&mut name).unwrap_or_default();
+
+        println!("How many money have you today? ");
+        let mut checked_balance: String = String::new();
+        io::stdin().read_line(&mut checked_balance).unwrap_or_default();
+        let balance = checked_balance.parse::<f32>().unwrap_or_default();
+
+        let player: Player = Player::new(name, vec![], balance, 0, 0);
+
+        let mut bot: String = String::new();
+        println!("Could you choose a name for a bot? ");
+        io::stdin().read_line(&mut bot).unwrap_or_default();
+        let computer = Bot::new(bot, vec![], balance, 0, 0);
+        computer.welcome_message();
+
+        println!("So let's play? ");
+        let deck = Deck::new();
+        let bj: BlackJack = BlackJack::new();
+
+        let game = false;
+
+        while game == false {
+            let mut game_deck = deck.create_deck();
+            game_deck.shuffle(&mut rand::thread_rng());
+            let check_balance_player: bool = bj.check_balance(&player);
+        }
+    }
+
+    fn check_balance(&self, player: &Player) -> bool {
         if player.balance == 0 as f32 {
             println!("{}, you haven't balance", player.name);
             true
@@ -18,7 +59,7 @@ impl BlackJack {
         }
     }
 
-    pub fn bet(player: &mut Player, computer: &mut Bot) -> [f32; 2] {
+    fn bet(&self, player: &mut Player, computer: &mut Bot) -> [f32; 2] {
         let mut bet_player: f32 = 0.0;
         let bet_computer: f32;
 
@@ -42,7 +83,7 @@ impl BlackJack {
         [bet_player, bet_computer]
     }
 
-    pub fn check_play_again(choice: &str) -> bool {
+    fn check_play_again(&self, choice: &str) -> bool {
         if choice.to_uppercase() == "Y" {
             false
         } else {

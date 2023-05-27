@@ -10,7 +10,7 @@ pub mod players {
         pub defeats: i32
     }
 
-    impl  Player {
+    impl Player {
 
         pub fn new(name: String, hand: Vec<Card>, balance: f32, wins: i32, defeats: i32) -> Self {
             Player { name, hand, balance, wins, defeats }
