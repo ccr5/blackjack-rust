@@ -26,6 +26,7 @@ impl BlackJack {
     pub fn new() -> Self { BlackJack {  } }
 
     pub fn run(&self) -> Result<(), Box<dyn Error>> {
+        print!("\x1B[2J\x1B[1;1H");
         let mut name: String = String::new();
         println!("Welcome to BlackJack -_-");
 
@@ -45,12 +46,19 @@ impl BlackJack {
         computer.welcome_message();
 
         println!("So let's play? ");
+        print!("\x1B[2J\x1B[1;1H");
         let mut deck = Deck::new();
         let mut game = false;
 
         while game == false {
+
+            human.player.clear_hand();
+            computer.player.clear_hand();
+
             deck.create_deck();
             deck.shuffle_deck();
+            print!("\x1B[2J\x1B[1;1H");
+
             let check_balance_player: bool = self.check_balance(&human.player);
             let check_balance_computer: bool = self.check_balance(&computer.player);
 
@@ -59,6 +67,7 @@ impl BlackJack {
                 continue;
             }
 
+            print!("\x1B[2J\x1B[1;1H");
             let bets = self.bet(&mut human.player, &mut computer.player);
             
             let mut ask_player = false;
@@ -83,6 +92,7 @@ impl BlackJack {
                 }
             }
     
+            print!("\x1B[2J\x1B[1;1H");
             let mut bot_player = false;
     
             while !bot_player {
