@@ -4,10 +4,10 @@ pub mod dealer {
     fn check_as(count_a: i8, sum: i8) -> i8 {
         let mut new_sum = sum;
 
-        if count_a >= 1 && sum > 10 {
-            new_sum += 1 * count_a;
-        } else if count_a == 1 && sum <= 10 {
+        if count_a == 1 && sum <= 10 {
             new_sum += 11;
+        } else {
+            new_sum += 1 * count_a;
         }
 
         new_sum
