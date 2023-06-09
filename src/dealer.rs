@@ -19,21 +19,21 @@ pub mod dealer {
         let mut count_a_h1: i8 = 0;
         let mut count_a_h2: i8 = 0;
 
-        for card in hand1 {
+        hand1.iter().for_each(|card| {
             if card.get_ticker().to_string() == "A" {
                 count_a_h1 += 1;
             } else {
                 h1 += card.get_height().get(0).unwrap()
             }
-        }
+        });
 
-        for card in hand2 {
+        hand2.iter().for_each(|card| {
             if card.get_ticker().to_string() == "A" {
                 count_a_h2 += 1;
             } else {
                 h2 += card.get_height().get(0).unwrap()
             }
-        }
+        });
 
         let verify_h1 = check_as(count_a_h1, h1);
         let verify_h2 = check_as(count_a_h2, h2);

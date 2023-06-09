@@ -27,7 +27,7 @@ pub mod bot {
                 let mut count_a = 0;
                 let mut sum_hand = 0;
 
-                for card in self.player.get_hand() {
+                self.player.get_hand().iter().for_each(|card| {
                     if card.get_ticker() == "A" {
                         count_a += 1;
 
@@ -40,8 +40,7 @@ pub mod bot {
                     } else {
                         sum_hand += card.get_height()[0];
                     }
-                }
-                    
+                });
 
             sum_hand < 21
             }

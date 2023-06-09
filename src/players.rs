@@ -83,9 +83,9 @@ pub mod players {
         }
 
         fn show_hand(&self) {
-            for card in &self.hand {
+            self.hand.iter().for_each(|card| {
                 card.show_card();
-            }
+            });
         }
     }
 
