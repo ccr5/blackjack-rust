@@ -1,3 +1,8 @@
+//! # Blackjack - Rust
+//!
+//! This is my second project to improve my skils in Rust and a little project to have a fun.
+/// 
+
 mod cards;
 mod deck;
 mod players;
@@ -23,8 +28,11 @@ struct Bets {
 
 impl BlackJack {
 
+    /// Create a new Blackjack object
     pub fn new() -> Self { BlackJack {  } }
 
+    /// Main function of Blackjack crate
+    /// This function start the game in the terminal
     pub fn run(&self) -> Result<(), Box<dyn Error>> {
         print!("\x1B[2J\x1B[1;1H");
         let mut name: String = String::new();
