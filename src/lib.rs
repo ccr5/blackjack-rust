@@ -19,7 +19,7 @@ use dealer::dealer::{check_winner};
 use crate::deck::deck::Deck;
 use crate::human::human::Human;
 
-pub struct BlackJack { }
+pub struct BlackJack;
 
 struct Bets {
     player_bet_amount: f32,
@@ -29,7 +29,7 @@ struct Bets {
 impl BlackJack {
 
     /// Create a new Blackjack object
-    pub fn new() -> Self { BlackJack {  } }
+    pub fn new() -> Self { BlackJack }
 
     /// Main function of Blackjack crate
     /// This function start the game in the terminal
@@ -39,11 +39,11 @@ impl BlackJack {
         println!("Welcome to BlackJack -_-");
 
         println!("First, What is your name? ");
-        io::stdin().read_line(&mut name).unwrap_or_default();
+        io::stdin().read_line(&mut name).unwrap();
 
         println!("How many money have you today? ");
         let mut checked_balance: String = String::new();
-        io::stdin().read_line(&mut checked_balance).unwrap_or_default();
+        io::stdin().read_line(&mut checked_balance).unwrap();
         let balance = checked_balance.trim_end().parse::<f32>().unwrap();
         let mut human: Human = Human::new(name, vec![], balance, 0, 0);
 
@@ -54,6 +54,9 @@ impl BlackJack {
         computer.welcome_message();
 
         println!("So let's play? ");
+        let mut wait: String = String::new();
+        io::stdin().read_line(&mut wait).unwrap();
+
         print!("\x1B[2J\x1B[1;1H");
         let mut deck = Deck::new();
         let mut game = false;
@@ -158,8 +161,8 @@ impl BlackJack {
         while bet_player <= 0.0 {
             let mut capture_bet_player: String = String::new();
             println!("Insert how many will you bet in this match: ");
-            io::stdin().read_line(&mut capture_bet_player).unwrap_or_default();
-            bet_player = capture_bet_player.trim_end().parse::<f32>().unwrap_or_default();
+            io::stdin().read_line(&mut capture_bet_player).unwrap();
+            bet_player = capture_bet_player.trim_end().parse::<f32>().unwrap();
             
             if bet_player > player.get_balance() {
                 println!("You haven't balance enough to bet this amount")
